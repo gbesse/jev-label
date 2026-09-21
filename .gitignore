@@ -1,0 +1,9 @@
+# Purpose: Exclude label sessions, environments, caches and builds.
+__pycache__/
+.venv/
+*.egg-info/
+dist/
+.local/
+local-data/
+*.sqlite*
+.jev-cache*

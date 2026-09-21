@@ -1,0 +1,2 @@
+# Purpose: Install this stdlib-only project for development.
+-e .
