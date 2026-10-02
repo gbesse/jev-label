@@ -7,6 +7,10 @@
 ## 30-second offline quick start
 `git clone https://github.com/gbesse/jev-label.git && cd jev-label && python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements-dev.txt && python -m examples.offline_demo`
 
+## Example: reserve the holdout before selecting labels
+
+Run `python -m examples.holdout_selection` to split synthetic rows, select uncertain rows for human review, and check that no holdout id enters the review queue. This illustrates the isolation contract; the tiny fixture cannot establish a quality gain.
+
 ## Call real Jev
 Set `TYPESAFE_API_KEY` before a reviewed prelabel adapter sends paid requests to `api.typesafe.ai`. The alpha transport is unwired; `python scripts/live_smoke.py` makes zero calls. Demo probabilities are synthetic.
 
