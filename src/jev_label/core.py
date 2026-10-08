@@ -17,6 +17,7 @@ def score(row,strategy,threshold=.5):
  if strategy=='random':return 0
  raise ValueError('Unknown strategy')
 def select(rows,strategy,budget,*,holdout_ids=(),seed=7,threshold=.5):
+ if isinstance(budget,bool) or not isinstance(budget,int) or budget<0:raise ValueError('budget must be a non-negative integer')
  eligible=[r for r in rows if r['id'] not in set(holdout_ids)]
  if strategy=='random':eligible=list(eligible);random.Random(seed).shuffle(eligible);return eligible[:budget]
  return sorted(eligible,key=lambda r:(-score(r,strategy,threshold),str(r['id'])))[:budget]
