@@ -4,7 +4,7 @@ requires=["setuptools>=68"]
 build-backend="setuptools.build_meta"
 [project]
 name="jev-label"
-version="0.1.1"
+version="0.1.2"
 description="Probability-driven active labeling with a structurally isolated holdout."
 requires-python=">=3.11"
 license={text="MIT"}

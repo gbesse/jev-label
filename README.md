@@ -30,3 +30,11 @@ Run `python -m compileall -q src tests && python -m unittest discover -s tests &
 [Question Forge](https://github.com/gbesse/question-forge), [DecisionPacks](https://github.com/gbesse/decisionpacks), and [jev-codebook](https://github.com/gbesse/jev-codebook).
 
 Independent project; not affiliated with TypeSafe AI. [API docs](https://docs.typesafe.ai/api) · [model notes](https://docs.typesafe.ai/model-jaggedness/jev-1.13/)
+
+## October 2026 improvement · Amélioration d’octobre 2026 · Mejora de octubre de 2026
+
+Selection now rejects negative and noninteger labeling budgets; a negative slice can no longer select unintended records. Run the offline tests.
+
+La sélection refuse désormais les budgets d’annotation négatifs ou non entiers ; une tranche négative ne peut plus retenir des dossiers imprévus. Lancez les tests hors ligne.
+
+La selección ahora rechaza presupuestos de etiquetado negativos o no enteros; un corte negativo ya no puede elegir registros imprevistos. Ejecute las pruebas sin conexión.

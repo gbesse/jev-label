@@ -9,6 +9,9 @@ class Tests(unittest.TestCase):
  def test_committee_single_call(self):
   f=FakeJev();r=prelabel([{'id':'x','text':'t'}],[{},{}],f);self.assertEqual(len(f.calls),1);self.assertEqual(len(r[0]['committee']),2)
  def test_holdout_excluded(self):self.assertNotIn('a',[r['id'] for r in select(ROWS,'uncertainty',3,holdout_ids=['a'])])
+ def test_invalid_budget_cannot_select_unintended_rows(self):
+  for budget in [-1,1.5,True]:
+   with self.assertRaisesRegex(ValueError,'budget'):select(ROWS,'uncertainty',budget)
  def test_durable_resume(self):
   with tempfile.TemporaryDirectory() as d:
    p=Path(d)/'labels.jsonl';write_label(p,ROWS[0],1,'reviewer');self.assertEqual(resume_ids(p),{'a'})
