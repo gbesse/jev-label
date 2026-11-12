@@ -38,3 +38,12 @@ Selection now rejects negative and noninteger labeling budgets; a negative slice
 La sélection refuse désormais les budgets d’annotation négatifs ou non entiers ; une tranche négative ne peut plus retenir des dossiers imprévus. Lancez les tests hors ligne.
 
 La selección ahora rechaza presupuestos de etiquetado negativos o no enteros; un corte negativo ya no puede elegir registros imprevistos. Ejecute las pruebas sin conexión.
+
+
+## 2026-11-12 — FR / EN / ES
+
+FR : Refuser les labels textuels manquants et scores non finis avant ajustement ou évaluation binaire.
+
+EN: Reject textual or missing labels and nonfinite scores before binary tuning and evaluation.
+
+ES: Rechazar etiquetas textuales o ausentes y puntuaciones no finitas antes de ajuste y evaluación binaria.
