@@ -37,9 +37,20 @@ def resume_ids(path):
  p=Path(path);return {json.loads(x)['id'] for x in p.read_text().splitlines()} if p.exists() else set()
 def wilson(k,n,confidence=.95):
  z=NormalDist().inv_cdf((1+confidence)/2);p=k/n;d=1+z*z/n;c=(p+z*z/(2*n))/d;h=z*math.sqrt(p*(1-p)/n+z*z/(4*n*n))/d;return max(0,c-h),min(1,c+h)
+def _binary_evaluation_rows(rows,threshold=None):
+ error='Évaluation binaire invalide / Invalid binary evaluation / Evaluación binaria inválida'
+ if not isinstance(rows,list)or not rows or len(rows)>100000:raise ValueError(error)
+ if threshold is not None and(type(threshold)not in(int,float)or not math.isfinite(threshold)or not 0<=threshold<=1):raise ValueError(error)
+ for row in rows:
+  label=row.get('label');p=row.get('probability')
+  if type(label)not in(bool,int)or label not in(0,1)or type(p)not in(int,float)or not math.isfinite(p)or not 0<=p<=1:raise ValueError(error)
+ return rows
+
 def fit_threshold(tuning):
+ _binary_evaluation_rows(tuning)
  candidates=sorted({r['probability'] for r in tuning});return max(candidates,key=lambda t:sum((r['probability']>=t)==bool(r['label']) for r in tuning))
 def evaluate(rows,threshold=.5):
+ _binary_evaluation_rows(rows,threshold)
  classes=sorted({r['label'] for r in rows});correct=sum((r['probability']>=threshold)==bool(r['label']) for r in rows);metrics={}
  for c in classes:
   tp=sum(r['label']==c and (r['probability']>=threshold)==bool(c) for r in rows);pred=sum((r['probability']>=threshold)==bool(c) for r in rows);actual=sum(r['label']==c for r in rows);metrics[str(c)]={'precision':tp/pred if pred else None,'recall':tp/actual if actual else None,'recall_interval':wilson(tp,actual) if actual else None}
